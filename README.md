@@ -591,11 +591,12 @@ var_dump($president1 === $president2); // true
 
 Structural Design Patterns
 ==========================
-In plain words
-> Structural patterns are mostly concerned with object composition or in other words how the entities can use each other. Or yet another explanation would be, they help in answering "How to build a software component?"
+Nói một cách đơn giản
 
-Wikipedia says
-> In software engineering, structural design patterns are design patterns that ease the design by identifying a simple way to realize relationships between entities.
+> Structural pattern chủ yếu quan tâm tới các thành phần đối tượng hay nói cách khác là các thực thể có thể tương tác lẫn nhau như thế nào. Hoặc cách giải thích khác là, chúng giá ta trả lời câu hỏi "Làm sao để xây dựng một phần mềm hướng component?"
+
+Wikipedia định nghĩa là
+> Trong lĩnh vực kĩ nghệ phần mềm, structural design pattern là các design pattern được thiết kế dễ dàng bằng cách xác định đơn giản các mối quan hệ giữa các thực thể. 
 
  * [Adapter](#-adapter)
  * [Bridge](#-bridge)
@@ -607,22 +608,25 @@ Wikipedia says
 
 🔌 Adapter
 -------
-Real world example
-> Consider that you have some pictures in your memory card and you need to transfer them to your computer. In order to transfer them you need some kind of adapter that is compatible with your computer ports so that you can attach memory card to your computer. In this case card reader is an adapter.
-> Another example would be the famous power adapter; a three legged plug can't be connected to a two pronged outlet, it needs to use a power adapter that makes it compatible with the two pronged outlet.
-> Yet another example would be a translator translating words spoken by one person to another
+Ví dụ thực tế
+> Giả sử là bạn đang có một số hình ảnh trong thẻ nhớ của mình và bạn cần chuyển chúng vào máy tính. Để chuyển được chúng bạn cần có thứ gì đó như adapter có khả năng tương thích với máy tính của mình để bạn có thể kết nối thẻ nhớ vào máy tính. Trong trường hợp này đầu đọc thẻ (card reader) là một adapter.
 
-In plain words
-> Adapter pattern lets you wrap an otherwise incompatible object in an adapter to make it compatible with another class.
+> Một ví dụ khác như bộ nguồn adapter nổi tiếng; chiếc ổ cắm 3 chân không thể kết nối với đầu ra hai chân, nó cần sử dụng một power adapter giúp nó tương thích với đầu ra 2 chân.
 
-Wikipedia says
-> In software engineering, the adapter pattern is a software design pattern that allows the interface of an existing class to be used as another interface. It is often used to make existing classes work with others without modifying their source code.
+> Một ví dụ khác là một người dịch giả sẽ dịch những từ do một người nói ra cho người khác.
 
-**Programmatic Example**
+Nói một cách đơn giản
 
-Consider a game where there is a hunter and he hunts lions.
+> Adapter pattern cho phép bạn đóng gói một object không tương thích vào một adapter và giúp nó tương thích với một class khác
 
-First we have an interface `Lion` that all types of lions have to implement
+Wikipedia định nghĩa là
+> Trong kĩ nghệ phần mềm, adapter pattern là một design pattern trong lĩnh vực phần mềm cho phép interface của một class đã tồn tại có thể sử dụng được như một interface khác. Nó thường được sử dụng để giúp các class đã tồn tại làm việc được với những class khác mà không cần chỉnh sửa source code.
+
+**Ví dụ lập trình**
+
+Hãy xem qua một trò chơi về người thợ săn là anh ta săn sư tử.
+
+Đầu tiên hãy tạo một interface `Lion` mà tất cả các loại sư tử có thể implement
 
 ```php
 interface Lion
@@ -644,7 +648,9 @@ class AsianLion implements Lion
     }
 }
 ```
-And hunter expects any implementation of `Lion` interface to hunt.
+
+Và thợ săn hi vọng tất cả những thứ implement từ `Lion` để săn.
+
 ```php
 class Hunter
 {
@@ -655,7 +661,7 @@ class Hunter
 }
 ```
 
-Now let's say we have to add a `WildDog` in our game so that hunter can hunt that also. But we can't do that directly because dog has a different interface. To make it compatible for our hunter, we will have to create an adapter that is compatible
+Bây giờ giả sử chúng ta thêm một `WildDog` vào game để thợ săn cũng có thể săn nó. Nhưng chúng ta không thể làm việc này trực tiếp vì chó thuộc một interface khác. Để nó tương thích với thợ săn của chúng ta, chúng ta sẽ tạo một adapter để nó tương thích được
 
 ```php
 // This needs to be added to the game
@@ -682,7 +688,8 @@ class WildDogAdapter implements Lion
     }
 }
 ```
-And now the `WildDog` can be used in our game using `WildDogAdapter`.
+
+Và bây giờ thì `WildGod` có thể được sử dụng trong game của chúng ta thông qua việc dùng `WildDogAdapter`
 
 ```php
 $wildDog = new WildDog();
@@ -694,20 +701,21 @@ $hunter->hunt($wildDogAdapter);
 
 🚡 Bridge
 ------
-Real world example
-> Consider you have a website with different pages and you are supposed to allow the user to change the theme. What would you do? Create multiple copies of each of the pages for each of the themes or would you just create separate theme and load them based on the user's preferences? Bridge pattern allows you to do the second i.e.
+Ví dụ thực tế
+
+> Hãy xem việc bạn có một website và các trang khác nhau và bạn có nhiệm vụ phải cho phép người dùng có thể thay đổi theme. Bạn sẽ làm gì? Tạo ra một loạt các bản copy của mỗi trang cho mỗi theme hoặc bạn chỉ tạo những theme riêng và tải phần base của chúng dựa trên phần tùy chỉnh của mỗi user? Bridge pattern cho phép bạn thực hiện cách thứ 2 như này
 
 ![With and without the bridge pattern](https://cloud.githubusercontent.com/assets/11269635/23065293/33b7aea0-f515-11e6-983f-98823c9845ee.png)
 
-In Plain Words
-> Bridge pattern is about preferring composition over inheritance. Implementation details are pushed from a hierarchy to another object with a separate hierarchy.
+Nói một cách đơn giản
+> Bridge pattern thiên về mô hình composition thay vì inheritence (kế thừa). Chi tiết việc implement được đẩy từ một hệ thống phân cấp tới các object khác với hệ thống phân cấp riêng biệt.
 
-Wikipedia says
-> The bridge pattern is a design pattern used in software engineering that is meant to "decouple an abstraction from its implementation so that the two can vary independently"
+Wikipedia định nghĩa là
+> Bridge pattern là một design pattern được sử dụng trong kĩ nghệ phần mềm mà nó được định nghĩa là "tách rời một lớp abstract từ implement của nó thành hai phần có thể thay đổi độc lập"
 
-**Programmatic Example**
+**Ví dụ trong lập trình**
 
-Translating our WebPage example from above. Here we have the `WebPage` hierarchy
+Ví dụ như việc dịch trang web của chúng ta từ trên xuống. Ở đây chúng ta có một hệ thống cấp bậc `WebPage`
 
 ```php
 interface WebPage
@@ -746,7 +754,7 @@ class Careers implements WebPage
     }
 }
 ```
-And the separate theme hierarchy
+Và các theme phân cấp riêng biệt 
 ```php
 
 interface Theme
@@ -776,7 +784,9 @@ class AquaTheme implements Theme
     }
 }
 ```
-And both the hierarchies
+
+Và cả hai hệ thống phân cấp
+
 ```php
 $darkTheme = new DarkTheme();
 
@@ -790,18 +800,18 @@ echo $careers->getContent(); // "Careers page in Dark Black";
 🌿 Composite
 -----------------
 
-Real world example
-> Every organization is composed of employees. Each of the employees has the same features i.e. has a salary, has some responsibilities, may or may not report to someone, may or may not have some subordinates etc.
+ví dụ thực tế
+> Mọi tổ chức đều bao gồm các thành viên. Mỗi một thành viên có các tính năng giống nhau như là có lương, có một số trách nhiệm, có thể hoặc không thể báo cáo cho ai đó, có thể hoặc không thể có một vài cấp dưới...
 
-In plain words
-> Composite pattern lets clients treat the individual objects in a uniform manner.
+Nói ngắn gọn
+> Composite pattern cho phép client xử lý các đối tượng theo một cách thống nhất.
 
-Wikipedia says
-> In software engineering, the composite pattern is a partitioning design pattern. The composite pattern describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects and compositions uniformly.
+Wikipedia định nghĩa là
+> Trong kĩ nghệ phần mềm, composite pattern là một design pattern thuộc nhóm phân vùng. Composite pattern mô tả về một nhóm các object được xử lý cùng một cách giống như một instance của object. Mục đích của composite là "tạo ra" các object vào một cấu trúc dạng cây để đại diện cho toàn bộ hệ thống phân cấp. Việc triển khai composite pattern cho phép client xử lý các đối tượng và bố cục riêng lẻ một cách thống nhất.
 
-**Programmatic Example**
+**Ví dụ trong lập trình**
 
-Taking our employees example from above. Here we have different employee types
+Lấy ví dụ về nhân viên ở phía trên. Ở đây chúng ta có các loại nhân viên khác nhau
 
 ```php
 interface Employee
@@ -880,7 +890,7 @@ class Designer implements Employee
 }
 ```
 
-Then we have an organization which consists of several different types of employees
+Sau đó chúng ta có một tổ chức với nhiều kiểu nhân viên khác nhau
 
 ```php
 class Organization
@@ -905,7 +915,7 @@ class Organization
 }
 ```
 
-And then it can be used as
+Và nó có thể được sử dụng như sau:
 
 ```php
 // Prepare the employees
@@ -923,19 +933,20 @@ echo "Net salaries: " . $organization->getNetSalaries(); // Net Salaries: 27000
 ☕ Decorator
 -------------
 
-Real world example
+Ví dụ thực tế
+> Hãy tưởng tượng bạn đang có cửa hàng dịch vụ xe hơi và cung cấp nhiều dịch vụ khác nhau. Bây giờ bạn phải tính hóa đơn như nào? Bạn chọn một dịch vụ và tự động bổ sung giá của các dịch vụ đã cung cấp cho đến khi bạn nhận được chi phí cuối cùng. Ở đây mỗi loại dịch vụ là một decorator.
 
-> Imagine you run a car service shop offering multiple services. Now how do you calculate the bill to be charged? You pick one service and dynamically keep adding to it the prices for the provided services till you get the final cost. Here each type of service is a decorator.
+Nói ngắn gọn
 
-In plain words
-> Decorator pattern lets you dynamically change the behavior of an object at run time by wrapping them in an object of a decorator class.
+> Decorator pattern cho phép bạn tự động thay đổi các hành vi của một object ngay trong khi đang chạy bằng việc đóng gói chúng vào trong một object của một class decorator. 
 
-Wikipedia says
-> In object-oriented programming, the decorator pattern is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class. The decorator pattern is often useful for adhering to the Single Responsibility Principle, as it allows functionality to be divided between classes with unique areas of concern.
+Wikipedia định nghĩa là
 
-**Programmatic Example**
+> Trong lập trình hướng đối tượng, decorator pattern là một design pattern mà cho phép hành động thêm vào các object riêng lẻ, tĩnh hoặc động mà không ảnh hưởng lên hành vi của các object khác trong cùng class. Decorator pattern khá hữu dụng trong việc tôn trọng nguyên tắc Single Responsibility Principle, vì nó cho phép các chức năng được phân chia giữa các class mà nó quan tâm tới những khu vực duy nhất
 
-Lets take coffee for example. First of all we have a simple coffee implementing the coffee interface
+**Ví dụ trong lập trình**
+
+Lấy caffee là ví dụ. Đầu tiên tất cả chúng ta có một cốc caffee đơn giản được implement từ interface caffee.
 
 ```php
 interface Coffee
@@ -957,7 +968,9 @@ class SimpleCoffee implements Coffee
     }
 }
 ```
+
 We want to make the code extensible to allow options to modify it if required. Lets make some add-ons (decorators)
+
 ```php
 class MilkCoffee implements Coffee
 {
