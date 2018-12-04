@@ -969,7 +969,7 @@ class SimpleCoffee implements Coffee
 }
 ```
 
-We want to make the code extensible to allow options to modify it if required. Lets make some add-ons (decorators)
+Chúng ta muốn có thể mở rộng code để cho phép sửa đổi các tuỳ chọn nếu nó được yêu cầu.  Hãy tạo ra một vài add-on (decorator).
 
 ```php
 class MilkCoffee implements Coffee
@@ -1033,7 +1033,7 @@ class VanillaCoffee implements Coffee
 }
 ```
 
-Lets make a coffee now
+Giờ hãy tạo ra một ly coffee nào
 
 ```php
 $someCoffee = new SimpleCoffee();
@@ -1057,17 +1057,19 @@ echo $someCoffee->getDescription(); // Simple Coffee, milk, whip, vanilla
 ----------------
 
 Real world example
-> How do you turn on the computer? "Hit the power button" you say! That is what you believe because you are using a simple interface that computer provides on the outside, internally it has to do a lot of stuff to make it happen. This simple interface to the complex subsystem is a facade.
+Ví dụ trong thực tế 
 
-In plain words
-> Facade pattern provides a simplified interface to a complex subsystem.
+> Làm sao để mở một chiếc máy tính? Bạn nói là "Bấm nút nguồn"! Đây là thứ mà bạn tin vì bạn sử dụng một interface rất đơn giản do computer cung cấp ra phía bên ngoài, nhưng trong nó thì phải thực hiện rất nhiều thứ mới có thể làm được hành động đó. Interface đơn giản này đại diện cho một hệ thống con được gọi là facade.
 
-Wikipedia says
-> A facade is an object that provides a simplified interface to a larger body of code, such as a class library.
+Nói ngắn gọn
+> Facade pattern cung cấp một một interface đơn giản để đại diện cho một hệ thống con
 
-**Programmatic Example**
+Wikipedia định nghĩa là
+> Một facade cung cấp một interface đơn giản hoá cho một phần code khá lớn, như là một class trong thư viện.
 
-Taking our computer example from above. Here we have the computer class
+**Ví dụ trong lập trình**
+
+Lấy ví dụ về chiếc máy tính của chúng ta ở trên. Ở đây chúng ta có một class computer.
 
 ```php
 class Computer
@@ -1108,7 +1110,7 @@ class Computer
     }
 }
 ```
-Here we have the facade
+Chúng ta có một facade
 ```php
 class ComputerFacade
 {
@@ -1135,7 +1137,7 @@ class ComputerFacade
     }
 }
 ```
-Now to use the facade
+Giờ chúng ta sẽ xử dụng facade đó
 ```php
 $computer = new ComputerFacade(new Computer());
 $computer->turnOn(); // Ouch! Beep beep! Loading.. Ready to be used!
@@ -1145,8 +1147,10 @@ $computer->turnOff(); // Bup bup buzzz! Haah! Zzzzz
 🍃 Flyweight
 ---------
 
-Real world example
+Ví dụ trong thực tế
 > Did you ever have fresh tea from some stall? They often make more than one cup that you demanded and save the rest for any other customer so to save the resources e.g. gas etc. Flyweight pattern is all about that i.e. sharing.
+
+> Bạn đã từng uống trà tươi từ các gian hàng chưa? 
 
 In plain words
 > It is used to minimize memory usage or computational expenses by sharing as much as possible with similar objects.
