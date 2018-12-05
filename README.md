@@ -1148,19 +1148,18 @@ $computer->turnOff(); // Bup bup buzzz! Haah! Zzzzz
 ---------
 
 Ví dụ trong thực tế
-> Did you ever have fresh tea from some stall? They often make more than one cup that you demanded and save the rest for any other customer so to save the resources e.g. gas etc. Flyweight pattern is all about that i.e. sharing.
 
-> Bạn đã từng uống trà tươi từ các gian hàng chưa? 
+> Bạn đã từng uống trà tươi từ các gian hàng chưa? Họ thường phải làm nhiều hơn một cốc mà bạn yêu cầu và giữ phần còn lại cho bất kì khách hàng nào khác vì thế có thể tiết kiệm được nguyên liệu như gas... Flyweight pattern là tất cả những gì thuộc về nó như việc chia sẻ.
 
-In plain words
-> It is used to minimize memory usage or computational expenses by sharing as much as possible with similar objects.
+Nói một cách ngắn gọn
+> Nó được sử dụng để tối giản bộ nhớ hoặc chi phí về mặt tính toán thông qua việc chia sẻ nhiều nhất có thể với các object tương tự.
 
-Wikipedia says
-> In computer programming, flyweight is a software design pattern. A flyweight is an object that minimizes memory use by sharing as much data as possible with other similar objects; it is a way to use objects in large numbers when a simple repeated representation would use an unacceptable amount of memory.
+Wikipedia định nghĩa là
+> Trong lĩnh vực phần mềm máy tính, flyweight là một design pattern của phần mềm. Một flyweight là một object mà tối giản bộ nhớ sử dụng bằng việc chia sẻ nhiều dât nhất có thể với các object tương tự; nó là một cách để sử dụng một lượng lớn các object khi việc biểu diễn đơn giản sẽ sử dụng lượng memory không thể chấp nhận được.
 
-**Programmatic example**
+**Ví dụ trong lập trình**
 
-Translating our tea example from above. First of all we have tea types and tea maker
+Sử dụng lại ví dụ về trà ở phía trên. Đầu tiên chúng ta có các loại trà và những người pha trà
 
 ```php
 // Anything that will be cached is flyweight.
@@ -1185,7 +1184,7 @@ class TeaMaker
 }
 ```
 
-Then we have the `TeaShop` which takes orders and serves them
+Tiếp theo chúng ta có `TeaShop` sẽ nhận order và cung cấp chúng
 
 ```php
 class TeaShop
@@ -1211,7 +1210,7 @@ class TeaShop
     }
 }
 ```
-And it can be used as below
+Và nó có thể sử dụng như sau
 
 ```php
 $teaMaker = new TeaMaker();
@@ -1229,18 +1228,23 @@ $shop->serve();
 
 🎱 Proxy
 -------------------
-Real world example
-> Have you ever used an access card to go through a door? There are multiple options to open that door i.e. it can be opened either using access card or by pressing a button that bypasses the security. The door's main functionality is to open but there is a proxy added on top of it to add some functionality. Let me better explain it using the code example below.
+
+Ví dụ thực tế 
+
+> Bạn đã bao giờ sử dụng một thẻ truy cập để đi qua một cánh cửa? Có nhiều tùy chọn để mở cánh cửa đó ví dụ nó có thể được mở bằng cách sử dụng thẻ truy cập hoặc bằng cách nhấn một nút để vượt qua bảo mật. Chức năng chính của cửa là để mở nhưng có một proxy được thêm vào đầu nó để thêm một số chức năng. Hãy để tôi giải thích rõ hơn bằng cách sử dụng ví dụ code bên dưới.
 
 In plain words
-> Using the proxy pattern, a class represents the functionality of another class.
+> Việc sử dụng proxy pattern tức là sử dụng một class đại diện cho tính năng của class khác.
 
-Wikipedia says
-> A proxy, in its most general form, is a class functioning as an interface to something else. A proxy is a wrapper or agent object that is being called by the client to access the real serving object behind the scenes. Use of the proxy can simply be forwarding to the real object, or can provide additional logic. In the proxy extra functionality can be provided, for example caching when operations on the real object are resource intensive, or checking preconditions before operations on the real object are invoked.
 
-**Programmatic Example**
+Wikipedia định nghĩa là
+> Một proxy, ở dạng tổng quát nhất của nó, là một lớp hoạt động như một giao diện cho một cái gì đó khác. Một proxy là một một đối tượng bao bọc hoặc agent đang được client gọi để truy cập đối tượng phục vụ thực đằng sau bối cảnh. Việc sử dụng proxy chỉ đơn giản là có thể chuyển tiếp đến đối tượng thực, hoặc có thể cung cấp thêm logic.Trong chức năng bổ sung proxy có thể được cung cấp, ví dụ bộ nhớ đệm khi các hoạt động trên đối tượng thực là tài nguyên sâu, hoặc kiểm tra điều kiện tiên quyết trước khi hoạt động trên đối tượng thực được gọi.
+  
 
-Taking our security door example from above. Firstly we have the door interface and an implementation of door
+**Ví dụ trong lập trình**
+
+Lấy ví dụ cửa an ninh của chúng tôi từ trên. Đầu tiên chúng ta có door interface và một implementation của door
+
 
 ```php
 interface Door
@@ -1262,7 +1266,8 @@ class LabDoor implements Door
     }
 }
 ```
-Then we have a proxy to secure any doors that we want
+Sau đó, chúng tôi có một proxy để bảo đảm bất kỳ cửa nào mà chúng ta muốn
+
 ```php
 class SecuredDoor
 {
@@ -1293,7 +1298,8 @@ class SecuredDoor
     }
 }
 ```
-And here is how it can be used
+Và đây là cách nó có thể được sử dụng
+
 ```php
 $door = new SecuredDoor(new LabDoor());
 $door->open('invalid'); // Big no! It ain't possible.
